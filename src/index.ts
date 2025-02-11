@@ -11,6 +11,11 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+if (process.env.NODE_ENV === "production") {
+  console.log = () => {};
+  console.error = () => {};
+}
+
 // Mulai koneksi WhatsApp
 (async () => {
   await startWhatsApp();
